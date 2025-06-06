@@ -178,7 +178,7 @@ export default function Home() {
     if (!hasHover) {
       // Mobile behavior
       if (touchedCard === cardId) {
-        // Second tap - open project page
+        // Second tap - open project page in new tab
         window.open(`/projects/${cardId}`, "_blank");
       } else {
         // First tap - play video
@@ -194,8 +194,8 @@ export default function Home() {
         }, 4000);
       }
     } else {
-      // Desktop behavior - navigate to project page
-      window.location.href = `/projects/${cardId}`;
+      // Desktop behavior - open in new tab
+      window.open(`/projects/${cardId}`, "_blank");
     }
   };
 

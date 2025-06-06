@@ -21,16 +21,113 @@ interface ProjectDetail {
   publication?: string;
 }
 
+interface ClickEffect {
+  id: number;
+  x: number;
+  y: number;
+  emoji: string;
+}
+
 export default function ProjectDetailPage() {
   const params = useParams();
-  const projectId = params.id as string;
   const [isClient, setIsClient] = useState(false);
+  const [projectId, setProjectId] = useState<string>("");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
+
+  // Fun emoji pool
+  const emojis = [
+    "💖",
+    "👍",
+    "🌟",
+    "🎉",
+    "🔥",
+    "✨",
+    "🎨",
+    "🚀",
+    "💫",
+    "🌈",
+    "🍦",
+    "🎯",
+    "💎",
+    "🌸",
+    "⚡",
+    "🎪",
+  ];
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
+    if (params.id) {
+      setProjectId(params.id as string);
+    }
 
-  // Project details data
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    // Mobile touch tracking
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        setMousePosition({ x: touch.clientX, y: touch.clientY });
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        setMousePosition({ x: touch.clientX, y: touch.clientY });
+      }
+    };
+
+    // Click effect handler
+    const handleClick = (e: MouseEvent | TouchEvent) => {
+      let clientX, clientY;
+
+      if (e instanceof MouseEvent) {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      } else {
+        // TouchEvent
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      }
+
+      // Create random emoji effect
+      const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+      const newEffect: ClickEffect = {
+        id: Date.now() + Math.random(),
+        x: clientX,
+        y: clientY,
+        emoji: randomEmoji,
+      };
+
+      setClickEffects((prev) => [...prev, newEffect]);
+
+      // Remove effect after animation completes
+      setTimeout(() => {
+        setClickEffects((prev) =>
+          prev.filter((effect) => effect.id !== newEffect.id)
+        );
+      }, 1000);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("click", handleClick);
+    window.addEventListener("touchend", handleClick, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("click", handleClick);
+      window.removeEventListener("touchend", handleClick);
+    };
+  }, [params.id]);
+
+  // Project details data - make sure IDs match exactly with main page
   const projectDetails: Record<string, ProjectDetail> = {
     "embodied-exploration": {
       id: "embodied-exploration",
@@ -145,16 +242,37 @@ export default function ProjectDetailPage() {
     },
   };
 
+  // Show loading state until client-side is ready
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-lg text-gray-600">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
   const project = projectDetails[projectId];
 
-  if (!isClient) return <div>Loading...</div>;
+  // Temporary debugging - remove this later
+  console.log("Project ID from URL:", projectId);
+  console.log("Available project keys:", Object.keys(projectDetails));
+  console.log("Found project:", project);
 
+  // Show debug info on screen temporarily
   if (!project) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-          <Link href="/" className="text-blue-600 hover:text-blue-800">
+          <h1 className="text-2xl font-bold mb-4">Debug Info</h1>
+          <p>Project ID from URL: {projectId}</p>
+          <p>Available keys: {Object.keys(projectDetails).join(", ")}</p>
+          <p>Params object: {JSON.stringify(params)}</p>
+          <Link
+            href="/"
+            className="text-blue-600 hover:text-blue-800 mt-4 block"
+          >
             ← Back to Home
           </Link>
         </div>
@@ -163,7 +281,68 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div
+      className="min-h-screen bg-white text-black"
+      suppressHydrationWarning={true}
+    >
+      {/* Click Effect Emojis */}
+      {isClient &&
+        clickEffects.map((effect) => (
+          <div
+            key={effect.id}
+            className="fixed pointer-events-none z-50 text-2xl"
+            style={{
+              left: effect.x - 12,
+              top: effect.y - 12,
+              animation: "floatUp 1s ease-out forwards",
+            }}
+          >
+            {effect.emoji}
+          </div>
+        ))}
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes floatUp {
+          0% {
+            transform: translateY(0) scale(1) rotate(0deg);
+            opacity: 1;
+          }
+          50% {
+            transform: translateY(-30px) scale(1.2) rotate(10deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateY(-60px) scale(0.8) rotate(20deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes breathe {
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 0.8;
+          }
+        }
+
+        @keyframes breatheCircle {
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 0.7;
+          }
+          50% {
+            transform: scale(1.15);
+            opacity: 0.4;
+          }
+        }
+      `}</style>
+
       {/* Header */}
       <div className="bg-gray-50 py-8 px-8">
         <div className="max-w-4xl mx-auto">
@@ -284,6 +463,34 @@ export default function ProjectDetailPage() {
           </div>
         </section>
       </div>
+
+      {/* Mouse follower - only render on client */}
+      {isClient && (
+        <>
+          <div
+            className="fixed w-4 h-4 bg-blue-500 rounded-full pointer-events-none z-50"
+            style={{
+              left: mousePosition.x - 8,
+              top: mousePosition.y - 8,
+              transition: "left 0.1s ease-out, top 0.1s ease-out",
+              boxShadow:
+                "0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4)",
+              filter: "blur(0.5px)",
+              animation: "breathe 2s ease-in-out infinite",
+            }}
+          />
+
+          <div
+            className="fixed w-8 h-8 border-2 border-blue-400 rounded-full pointer-events-none z-40"
+            style={{
+              left: mousePosition.x - 16,
+              top: mousePosition.y - 16,
+              transition: "left 0.2s ease-out, top 0.2s ease-out",
+              animation: "breatheCircle 2.5s ease-in-out infinite",
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }
