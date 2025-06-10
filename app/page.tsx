@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Project {
   id: string;
@@ -112,7 +113,7 @@ export default function Home() {
       description:
         "Facilitating Remote Accessibility Assessment for Wheelchair Users with VR",
       tech: ["C#", "Unity", "VR", "Accessibility"],
-      metrics: "Published at ASSETS &apos;23",
+      metrics: "Published at ASSETS \'23",
       video: "/embodiedexploration.mp4",
       techColor: "purple",
       labels: ["XR", "Unity", "C#", "Accessibility"],
@@ -121,7 +122,7 @@ export default function Home() {
       id: "forcesight",
       title: "Forcesight",
       description: "Non-contact Force Sensing with Laser Speckle Imaging",
-      tech: ["Python", "Computer Vision", "Sensors"],
+      tech: ["Python", "Computer Vision", "Robot", "Hardware", "Sensors"],
       metrics: "<0.3N error, patented",
       video: "/forcesight.mp4",
       techColor: "green",
@@ -136,7 +137,7 @@ export default function Home() {
       metrics: "53K views, Meta SDK adoption",
       video: "/handinterfaces.mp4",
       techColor: "blue",
-      labels: ["XR", "C#", "C/C++", "Python"],
+      labels: ["XR", "Unity", "C#", "C/C++", "Python"],
     },
     {
       id: "ui-mobility",
@@ -144,7 +145,7 @@ export default function Home() {
       description:
         "Switching UI Positionings between Static, Dynamic, and Self Entities",
       tech: ["C#", "Python", "Unity", "XR"],
-      metrics: "Published at CHI &apos;24",
+      metrics: "Published at CHI \'24",
       video: "/uimobility.mp4",
       techColor: "orange",
       labels: ["XR", "C#", "Python"],
@@ -157,14 +158,14 @@ export default function Home() {
       metrics: "Published in Science Advances",
       video: "/haptic-skin.mp4",
       techColor: "red",
-      labels: ["XR", "C#", "C/C++", "Hardware"],
+      labels: ["XR", "C#", "C/C++", "Unity", "Hardware"],
     },
     {
       id: "wheelpose",
       title: "WheelPose",
       description: "Data Synthesis Techniques to Improve Pose Estimation Performance on Wheelchair Users",
-      tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
-      metrics: "Published at CHI &apos;24",
+      tech: ["Python", "C#", "Unity", "Applied AI/ML", "Computer Vision"],
+      metrics: "Published at CHI \'24",
       video: "/wheelpose.mp4",
       techColor: "teal",
       labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
@@ -174,7 +175,7 @@ export default function Home() {
       title: "Auritus",
       description: "Open-source optimization toolkit for training human movement models using earables",
       tech: ["Python", "C/C++", "Applied AI/ML", "IoT"],
-      metrics: "Published at IMWUT &apos;22",
+      metrics: "Published at IMWUT \'22",
       video: "/auritus.jpg", // Changed to image file
       techColor: "indigo",
       labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],

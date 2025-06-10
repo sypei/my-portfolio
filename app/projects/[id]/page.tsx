@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface ProjectDetail {
   id: string
@@ -122,7 +123,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'Embodied Exploration is a Virtual Reality technique for wheelchair users to evaluate accessibility remotely. It delivers the experience of a physical visit while keeping the convenience of remote assessment. We validated the efficacy of Embodied Exploration against photo galleries and virtual tours through user studies.',
       tech: ['C#', 'Unity', 'VR', 'Accessibility'],
       labels: ["XR", "Unity", "C#", "Accessibility"],
-      metrics: 'Published at ASSETS &apos;23',
+      metrics: 'Published at ASSETS \'23',
       video: '/embodiedexploration.mp4',
       images: ['/project1-1.jpg', '/project1-2.jpg'],
       challenges: [
@@ -149,7 +150,7 @@ export default function ProjectDetailPage() {
       title: 'Forcesight',
       description: 'Non-contact Force Sensing with Laser Speckle Imaging',
       fullDescription: 'ForceSight is a non-contact force sensing approach using laser speckle imaging. Our key observation is that object surfaces deform in the presence of force. This deformation, though very minute, manifests as observable and discernible laser speckle shifts, which we leverage to sense the applied force.',
-      tech: ['Python', 'Computer Vision', 'Sensors'],
+      tech: ["Python", "Computer Vision", "Robot", "Hardware","Sensors"],
       labels: ["Applied AI/ML", "XR", "Python"],
       metrics: '<0.3N error, patented, Best Demo Honorable Mention',
       video: '/forcesight.mp4',
@@ -178,8 +179,8 @@ export default function ProjectDetailPage() {
       title: 'Hand Interfaces',
       description: 'Using Hands to Imitate Objects in AR/VR for Expressive Interactions',
       fullDescription: 'A new interaction technique that lets users\' hands become virtual objects by imitating the objects themselves. For example, a thumbs-up hand pose is used to mimic a joystick. We created a wide array of interaction designs around this idea to demonstrate its applicability in object retrieval and interactive control tasks.',
-      tech: ['C#', 'C++', 'Python', 'XR'],
-      labels: ["XR", "C#", "C/C++", "Python"],
+      tech: ['C#', 'C/C++', 'Python', 'XR'],
+      labels: ["XR", "Unity", "C#", "C/C++", "Python"],
       metrics: '53K views, Meta SDK adoption, Best Paper Honorable Mention',
       video: '/handinterfaces.mp4',
       images: ['/project3-1.jpg', '/project3-2.jpg'],
@@ -210,7 +211,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'We facilitated UI mobility between static, dynamic, and self entities with Finger Switches based on users\' in-situ needs. Extended reality (XR) has the potential for seamless user interface (UI) transitions across people, objects, and environments, but UI mobility remains an often-overlooked feature.',
       tech: ['C#', 'Python', 'Unity', 'XR'],
       labels: ["XR", "C#", "Python"],
-      metrics: 'Published at CHI &apos;24',
+      metrics: 'Published at CHI \'24',
       video: '/uimobility.mp4',
       images: ['/project4-1.jpg', '/project4-2.jpg'],
       challenges: [
@@ -238,7 +239,7 @@ export default function ProjectDetailPage() {
       description: 'Artificial muscle skin system for haptic feedback in Extended Reality',
       fullDescription: 'We present a wearable haptic artificial muscle skin based on multilayer dielectric elastomer actuators (DEAs) in Extended Reality (XR) systems to enhance immersion. This breakthrough technology provides realistic haptic feedback for enhanced XR experiences.',
       tech: ['C#', 'C/C++', 'Hardware', 'Haptics'],
-      labels: ["XR", "C#", "C/C++", "Hardware"],
+      labels: ["XR", "C#", "C/C++", "Unity", "Hardware"],
       metrics: 'Published in Science Advances',
       video: '/haptic-skin.mp4',
       images: ['/project5-1.jpg', '/project5-2.jpg'],
@@ -264,9 +265,9 @@ export default function ProjectDetailPage() {
       title: 'WheelPose',
       description: 'Data Synthesis Techniques to Improve Pose Estimation Performance on Wheelchair Users',
       fullDescription: 'A data synthesis pipeline to address the underrepresentation of wheelchair users in data collection for pose estimation models. Our configurable pipeline generates synthetic data of wheelchair users using motion capture data and motion generation outputs simulated in the Unity game engine.',
-      tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
+      tech: ["Python", "C#", "Applied AI/ML", "Unity", "Computer Vision"],
       labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
-      metrics: 'Published at CHI &apos;24',
+      metrics: 'Published at CHI \'24',
       video: '/wheelpose.mp4',
       images: ['/project6-1.jpg', '/project6-2.jpg'],
       challenges: [
@@ -295,7 +296,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'AURITUS is an extendable and open-source optimization toolkit designed to enhance and replicate earable applications. AURITUS handles data collection, pre-processing, and labeling tasks using graphical tools and provides a hardware-in-the-loop (HIL) optimizer and TinyML interface to develop lightweight and real-time machine-learning models for activity detection and filters for head-pose tracking.',
       tech: ['Python', 'C++', 'Applied AI/ML', 'IoT'],
       labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],
-      metrics: 'Published at IMWUT &apos;21',
+      metrics: 'Published at IMWUT \'21',
       video: '/auritus.jpg',
       images: ['/project7-1.jpg', '/project7-2.jpg'],
       challenges: [

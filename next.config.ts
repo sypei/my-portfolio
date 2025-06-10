@@ -1,21 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Build configuration
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  
-  // Image optimization
-  images: {
-    unoptimized: true,
-    domains: ['localhost'],
-  },
-  
-  
+  /* config options here */
+   // Build configuration
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
+  distDir: "build",
 };
+// module.exports = nextConfig;
+
 
 export default nextConfig;
