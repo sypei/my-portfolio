@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from 'next/link'
 
 interface Project {
   id: string;
@@ -10,6 +11,7 @@ interface Project {
   metrics: string;
   video: string;
   techColor: string;
+  labels: string[]; // Added labels for filtering
 }
 
 interface ClickEffect {
@@ -27,6 +29,7 @@ export default function Home() {
   const [touchedCard, setTouchedCard] = useState<string | null>(null);
   const [hasHover, setHasHover] = useState(false);
   const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]); // New state for filters
 
   // Fun emoji pool
   const emojis = [
@@ -128,6 +131,7 @@ export default function Home() {
       metrics: "Published at ASSETS '23",
       video: "/embodiedexploration.mp4",
       techColor: "purple",
+      labels: ["XR", "Unity", "C#", "Accessibility"],
     },
     {
       id: "forcesight",
@@ -137,16 +141,18 @@ export default function Home() {
       metrics: "<0.3N error, patented",
       video: "/forcesight.mp4",
       techColor: "green",
+      labels: ["Applied AI/ML", "XR", "Python"],
     },
     {
       id: "hand-interfaces",
       title: "Hand Interfaces",
       description:
         "Using Hands to Imitate Objects in AR/VR for Expressive Interactions",
-      tech: ["C#", "C++", "Python", "AR/VR"],
+      tech: ["C#", "C/C++", "Python", "XR"],
       metrics: "53K views, Meta SDK adoption",
       video: "/handinterfaces.mp4",
       techColor: "blue",
+      labels: ["XR", "C#", "C/C++", "Python"],
     },
     {
       id: "ui-mobility",
@@ -157,6 +163,37 @@ export default function Home() {
       metrics: "Published at CHI '24",
       video: "/uimobility.mp4",
       techColor: "orange",
+      labels: ["XR", "C#", "Python"],
+    },
+    {
+      id: "haptic-muscle-skin",
+      title: "Haptic Artificial Muscle Skin",
+      description: "Artificial muscle skin system for haptic feedback in Extended Reality",
+      tech: ['C#', 'C/C++', 'Hardware', 'Haptics'],
+      metrics: "Published in Science Advances",
+      video: "/haptic-skin.mp4",
+      techColor: "red",
+      labels: ["XR", "C#", "C/C++", "Hardware"],
+    },
+    {
+      id: "wheelpose",
+      title: "WheelPose",
+      description: "Data Synthesis Techniques to Improve Pose Estimation Performance on Wheelchair Users",
+      tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
+      metrics: "Published at CHI '24",
+      video: "/wheelpose.mp4",
+      techColor: "teal",
+      labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
+    },
+    {
+      id: "auritus",
+      title: "Auritus",
+      description: "Open-source optimization toolkit for training human movement models using earables",
+      tech: ["Python", "C/C++", "Applied AI/ML", "IoT"],
+      metrics: "Published at IMWUT '22",
+      video: "/auritus.jpg", // Changed to image file
+      techColor: "indigo",
+      labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],
     },
   ];
 
@@ -205,11 +242,33 @@ export default function Home() {
       green: "bg-green-200 text-green-800",
       blue: "bg-blue-200 text-blue-800",
       orange: "bg-orange-200 text-orange-800",
+      red: "bg-red-200 text-red-800",
+      teal: "bg-teal-200 text-teal-800",
+      indigo: "bg-indigo-200 text-indigo-800",
     };
     return colors[color as keyof typeof colors] || "bg-gray-200 text-gray-800";
   };
 
   const activeCard = hoveredCard || touchedCard;
+
+  // Define which labels to show as global filters
+  const globalFilters = ["XR", "Applied AI/ML", "C#", "C/C++", "Python"];
+
+  // Filter projects based on selected filters
+  const filteredProjects = selectedFilters.length === 0 
+    ? projects 
+    : projects.filter(project => 
+        selectedFilters.some(filter => project.labels.includes(filter))
+      );
+
+  // Handle filter toggle
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters(prev => 
+      prev.includes(filter) 
+        ? prev.filter(f => f !== filter)
+        : [...prev, filter]
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white text-black relative">
@@ -271,28 +330,111 @@ export default function Home() {
         }
       `}</style>
 
-      {/* Main content */}
-      <div
-        className={`p-8 transition-opacity duration-300 ${
-          activeCard ? "opacity-30" : "opacity-100"
-        }`}
-      >
-        <h1 className="text-4xl font-bold mb-4">Siyou Pei</h1>
-        <p className="text-xl">Software Engineer | PhD in ECE</p>
+      {/* Navigation Bar */}
+      <nav className="w-full bg-white/80 backdrop-blur-sm border-b border-gray-100 fixed top-0 z-30">
+        <div className="max-w-6xl mx-auto px-8 py-4 flex justify-between items-center">
+          {/* Logo/Name */}
+          <Link href="/" className="font-bold text-xl text-black hover:text-gray-700 transition-colors">
+            Siyou Pei | Software Engineer & Researcher
+          </Link>
+          
+          {/* Navigation Links */}
+          <div className="hidden md:flex space-x-8">
+            <Link href="/about" className="text-gray-700 hover:text-black transition-colors p-2 rounded-lg hover:bg-gray-100">About</Link>
+            <Link href="/" className="text-gray-700 hover:text-black transition-colors p-2 rounded-lg hover:bg-gray-100">Portfolio</Link>
+            <Link href="/resume" className="text-gray-700 hover:text-black transition-colors p-2 rounded-lg hover:bg-gray-100">Resume</Link>        
+          </div>
+          
+          {/* Social Links */}
+          <div className="flex space-x-4">
+            <a href="https://linkedin.com/in/sypei" target="_blank" rel="noopener noreferrer"
+              className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-gray-100" 
+              title="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/SiyouPei" target="_blank" rel="noopener noreferrer" 
+              className="text-gray-600 hover:text-blue-500 transition-colors p-2 rounded-lg hover:bg-gray-100" 
+              title="X (Twitter)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://scholar.google.be/citations?user=WZd4DYAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer"
+              className="text-gray-600 hover:text-green-600 transition-colors p-2 rounded-lg hover:bg-gray-100" 
+              title="Google Scholar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6L23 9l-11-6zM5 13.18l7 3.82 7-3.82V18L12 21.82 5 18v-4.82z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/sypei" target="_blank" rel="noopener noreferrer"
+              className="text-gray-600 hover:text-purple-900 transition-colors p-2 rounded-lg hover:bg-gray-100" 
+              title="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main content - add top padding for fixed nav */}
+      <div className={`pt-20 p-8 transition-opacity duration-300 ${activeCard ? 'opacity-30' : 'opacity-100'}`}>
+      
       </div>
-
+     
       {/* Projects Grid */}
-      <div className="p-8">
-        <h2
-          className={`text-3xl font-bold mb-8 text-center transition-opacity duration-300 ${
-            activeCard ? "opacity-30" : "opacity-100"
-          }`}
-        >
-          Featured Projects
-        </h2>
+      <div className="p-4 sm:p-6 md:p-8">
+        {/* Filter Tags - responsive layout */}
+        <div className="max-w-7xl mx-auto mb-6 sm:mb-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            {/* All filter */}
+            <button
+              onClick={() => setSelectedFilters([])}
+              className={`px-3 sm:px-4 py-2 rounded-full font-medium text-sm sm:text-base transition-all duration-200 ${
+                selectedFilters.length === 0
+                  ? 'bg-black text-white shadow-lg'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              All ({projects.length})
+            </button>
+            
+            {/* Individual filter tags */}
+            {globalFilters.map((filter) => {
+              const count = projects.filter(p => p.labels.includes(filter)).length;
+              const isSelected = selectedFilters.includes(filter);
+              
+              return (
+                <button
+                  key={filter}
+                  onClick={() => toggleFilter(filter)}
+                  className={`px-3 sm:px-4 py-2 rounded-full font-medium text-sm sm:text-base transition-all duration-200 ${
+                    isSelected
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  {filter} ({count})
+                </button>
+              );
+            })}
+          </div>
+          
+          {/* Filter summary - responsive text */}
+          <div className="text-center mt-3 sm:mt-4 text-gray-600 text-sm sm:text-base">
+            {selectedFilters.length > 0 ? (
+              <p>Showing {filteredProjects.length} projects with: {selectedFilters.join(', ')}</p>
+            ) : (
+              <p>Showing all {projects.length} projects</p>
+            )}
+          </div>
+        </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          {projects.map((project) => {
+        {/* Responsive Grid Container - Option 1 */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+          {filteredProjects.map((project) => {
             const isActiveCard = activeCard === project.id;
             const shouldDim = activeCard && !isActiveCard;
 
@@ -310,64 +452,101 @@ export default function Home() {
                 onMouseLeave={handleCardLeave}
                 onClick={() => handleCardClick(project.id)}
               >
-                {/* Video/Image Container */}
+                {/* Video/Image Container - responsive aspect ratio */}
                 <div className="relative aspect-video bg-gray-100">
-                  <video
-                    className="w-full h-full object-cover"
-                    muted
-                    loop
-                    playsInline
-                    ref={(el) => {
-                      if (el) {
-                        if (playingVideo === project.id) {
-                          el.play();
-                        } else {
-                          el.pause();
-                          el.currentTime = 0;
+                  {project.video.endsWith('.mp4') ? (
+                    <video
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      ref={(el) => {
+                        if (el) {
+                          if (playingVideo === project.id) {
+                            el.play();
+                          } else {
+                            el.pause();
+                            el.currentTime = 0;
+                          }
                         }
-                      }
-                    }}
-                  >
-                    <source src={project.video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                      }}
+                    >
+                      <source src={project.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <img
+                      src={project.video}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
 
-                  {/* Play button overlay for mobile - only show on client */}
-                  {isClient && !hasHover && touchedCard !== project.id && (
+                  {/* Play button overlay for mobile - responsive size */}
+                  {isClient && !hasHover && touchedCard !== project.id && project.video.endsWith('.mp4') && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20">
-                      <div className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
-                        <div className="w-0 h-0 border-l-8 border-l-black border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1"></div>
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                        <div className="w-0 h-0 border-l-6 sm:border-l-8 border-l-black border-t-3 sm:border-t-4 border-t-transparent border-b-3 sm:border-b-4 border-b-transparent ml-1"></div>
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Text Content */}
-                <div
-                  className={`p-6 transition-opacity duration-300 ${
-                    isActiveCard ? "opacity-70" : "opacity-100"
-                  }`}
-                >
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-700 mb-4">{project.description}</p>
+                {/* Text Content - responsive padding and typography */}
+                <div className={`p-4 sm:p-5 md:p-6 transition-opacity duration-300 ${
+                  isActiveCard ? "opacity-70" : "opacity-100"
+                }`}>
+                  {/* Title - responsive text size */}
+                  <h3 className="text-lg sm:text-xl font-bold mb-2">{project.title}</h3>
+                  
+                  {/* Description - responsive text */}
+                  <p className="text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`px-2 py-1 rounded text-sm ${getTechColorClass(
-                          project.techColor
-                        )}`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* COMBINED Technologies & Categories - replaces both old sections */}
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
+                    {[...new Set([
+                      ...(project.tech || []), 
+                      ...(project.labels || [])
+                    ])]
+                      .filter(Boolean)
+                      .sort()
+                      .map((tag) => {
+                        const getTagColor = (tag) => {
+                          if (['C#', 'C++', 'Python', 'JavaScript'].includes(tag)) {
+                            return 'bg-blue-200 text-blue-800';
+                          }
+                          if (['Unity', 'React', 'Next.js', 'TensorFlow'].includes(tag)) {
+                            return 'bg-purple-200 text-purple-800';
+                          }
+                          if (['VR', 'AR', 'XR', 'Computer Vision', 'Machine Learning', 'Applied AI/ML'].includes(tag)) {
+                            return 'bg-green-200 text-green-800';
+                          }
+                          if (['Hardware', 'Sensors', 'Haptics', 'IoT'].includes(tag)) {
+                            return 'bg-orange-200 text-orange-800';
+                          }
+                          if (['Research', 'HCI', 'Accessibility', 'Sensing'].includes(tag)) {
+                            return 'bg-teal-200 text-teal-800';
+                          }
+                          return 'bg-gray-200 text-gray-800';
+                        };
+
+                        return (
+                          <span
+                            key={tag}
+                            className={`px-2 py-1 rounded text-xs sm:text-sm font-medium transition-all duration-200 hover:scale-105 ${getTagColor(tag)}`}
+                          >
+                            {tag}
+                          </span>
+                        );
+                      })}
                   </div>
 
-                  <div className="text-green-600 font-semibold">
+                  {/* Metrics - responsive text */}
+                  <div className="text-green-600 font-semibold text-sm sm:text-base">
                     {project.metrics}
                   </div>
                 </div>
+
               </div>
             );
           })}
