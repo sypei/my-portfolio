@@ -476,16 +476,15 @@ export default function ProjectDetailPage() {
                   controls
                   muted
                   loop
-                  // onError={(e) => {
-                  //   console.error('Video failed to load:', project.video);
-                  //   // Hide the video element if it fails to load
-                  //   e.target.style.display = 'none';
-                  //   // Show fallback message
-                  //   const fallback = document.createElement('div');
-                  //   fallback.className = 'w-full h-64 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center text-gray-500';
-                  //   fallback.textContent = 'Video not available';
-                  //   e.target.parentNode.insertBefore(fallback, e.target);
-                  // }}
+                  onError={(e) => {
+                    console.error('Video failed to load:', project.video);
+                    const target = e.target as HTMLVideoElement;
+                    target.style.display = 'none';
+                    const fallback = document.createElement('div');
+                    fallback.className = 'w-full h-64 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center text-gray-500';
+                    fallback.textContent = 'Video not available';
+                    target.parentNode?.insertBefore(fallback, target);
+                  }}
                 >
                   <source src={project.video} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -498,10 +497,13 @@ export default function ProjectDetailPage() {
                   src={project.video}
                   alt={project.title}
                   className="w-full rounded-lg shadow-lg"
-                  // onError={(e) => {
-                  //   console.error('Image failed to load:', project.video);
-                  //   e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZmFmYiIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2YjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBub3QgYXZhaWxhYmxlPC90ZXh0Pgo8L3N2Zz4K';
-                  // }}
+                  onError={(e) => {
+                    console.error('Image failed to load:', project.video);
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target) {
+                      target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZmFmYiIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2YjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBub3QgYXZhaWxhYmxlPC90ZXh0Pgo8L3N2Zz4K';
+                    }
+                  }}
                 />
               );
             } else {
