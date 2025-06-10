@@ -16,10 +16,10 @@ export default function AboutPage() {
   const [clickEffects, setClickEffects] = useState<ClickEffect[]>([])
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Fun emoji pool
-  const emojis = ['💖', '👍', '🌟', '🎉', '🔥', '✨', '🎨', '🚀', '💫', '🌈', '🍦', '🎯', '💎', '🌸', '⚡', '🎪']
-
   useEffect(() => {
+    // Fun emoji pool
+    const emojis = ['💖', '👍', '🌟', '🎉', '🔥', '✨', '🎨', '🚀', '💫', '🌈', '🍦', '🎯', '💎', '🌸', '⚡', '🎪']
+
     setIsClient(true)
 
     const handleMouseMove = (e: MouseEvent) => {

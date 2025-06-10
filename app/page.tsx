@@ -32,27 +32,10 @@ export default function Home() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); // New state for filters
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Fun emoji pool
-  const emojis = [
-    "💖",
-    "👍",
-    "🌟",
-    "🎉",
-    "🔥",
-    "✨",
-    "🎨",
-    "🚀",
-    "💫",
-    "🌈",
-    "🍦",
-    "🎯",
-    "💎",
-    "🌸",
-    "⚡",
-    "🎪",
-  ];
-
   useEffect(() => {
+    // Fun emoji pool
+    const emojis = ['💖', '👍', '🌟', '🎉', '🔥', '✨', '🎨', '🚀', '💫', '🌈', '🍦', '🎯', '💎', '🌸', '⚡', '🎪']
+
     setIsClient(true);
     setHasHover(window.matchMedia("(hover: hover)").matches);
 
@@ -129,7 +112,7 @@ export default function Home() {
       description:
         "Facilitating Remote Accessibility Assessment for Wheelchair Users with VR",
       tech: ["C#", "Unity", "VR", "Accessibility"],
-      metrics: "Published at ASSETS '23",
+      metrics: "Published at ASSETS \'23",
       video: "/embodiedexploration.mp4",
       techColor: "purple",
       labels: ["XR", "Unity", "C#", "Accessibility"],
@@ -161,7 +144,7 @@ export default function Home() {
       description:
         "Switching UI Positionings between Static, Dynamic, and Self Entities",
       tech: ["C#", "Python", "Unity", "XR"],
-      metrics: "Published at CHI '24",
+      metrics: "Published at CHI \'24",
       video: "/uimobility.mp4",
       techColor: "orange",
       labels: ["XR", "C#", "Python"],
@@ -181,7 +164,7 @@ export default function Home() {
       title: "WheelPose",
       description: "Data Synthesis Techniques to Improve Pose Estimation Performance on Wheelchair Users",
       tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
-      metrics: "Published at CHI '24",
+      metrics: "Published at CHI \'24",
       video: "/wheelpose.mp4",
       techColor: "teal",
       labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
@@ -191,7 +174,7 @@ export default function Home() {
       title: "Auritus",
       description: "Open-source optimization toolkit for training human movement models using earables",
       tech: ["Python", "C/C++", "Applied AI/ML", "IoT"],
-      metrics: "Published at IMWUT '22",
+      metrics: "Published at IMWUT \'22",
       video: "/auritus.jpg", // Changed to image file
       techColor: "indigo",
       labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],
@@ -235,19 +218,6 @@ export default function Home() {
       // Desktop behavior - open in new tab
       window.open(`/projects/${cardId}`, "_blank");
     }
-  };
-
-  const getTechColorClass = (color: string) => {
-    const colors = {
-      purple: "bg-purple-200 text-purple-800",
-      green: "bg-green-200 text-green-800",
-      blue: "bg-blue-200 text-blue-800",
-      orange: "bg-orange-200 text-orange-800",
-      red: "bg-red-200 text-red-800",
-      teal: "bg-teal-200 text-teal-800",
-      indigo: "bg-indigo-200 text-indigo-800",
-    };
-    return colors[color as keyof typeof colors] || "bg-gray-200 text-gray-800";
   };
 
   const activeCard = hoveredCard || touchedCard;

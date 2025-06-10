@@ -35,13 +35,14 @@ export default function ProjectDetailPage() {
   const [projectId, setProjectId] = useState<string>('')
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [clickEffects, setClickEffects] = useState<ClickEffect[]>([])
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
 
-  // Fun emoji pool
-  const emojis = ['💖', '👍', '🌟', '🎉', '🔥', '✨', '🎨', '🚀', '💫', '🌈', '🍦', '🎯', '💎', '🌸', '⚡', '🎪']
-
+  
   useEffect(() => {
+
+    // Fun emoji pool
+    const emojis = ['💖', '👍', '🌟', '🎉', '🔥', '✨', '🎨', '🚀', '💫', '🌈', '🍦', '🎯', '💎', '🌸', '⚡', '🎪']
+
     setIsClient(true)
     if (params.id) {
       setProjectId(params.id as string)
