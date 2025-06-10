@@ -112,7 +112,7 @@ export default function Home() {
       description:
         "Facilitating Remote Accessibility Assessment for Wheelchair Users with VR",
       tech: ["C#", "Unity", "VR", "Accessibility"],
-      metrics: "Published at ASSETS \'23",
+      metrics: "Published at ASSETS &apos;23",
       video: "/embodiedexploration.mp4",
       techColor: "purple",
       labels: ["XR", "Unity", "C#", "Accessibility"],
@@ -144,7 +144,7 @@ export default function Home() {
       description:
         "Switching UI Positionings between Static, Dynamic, and Self Entities",
       tech: ["C#", "Python", "Unity", "XR"],
-      metrics: "Published at CHI \'24",
+      metrics: "Published at CHI &apos;24",
       video: "/uimobility.mp4",
       techColor: "orange",
       labels: ["XR", "C#", "Python"],
@@ -164,7 +164,7 @@ export default function Home() {
       title: "WheelPose",
       description: "Data Synthesis Techniques to Improve Pose Estimation Performance on Wheelchair Users",
       tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
-      metrics: "Published at CHI \'24",
+      metrics: "Published at CHI &apos;24",
       video: "/wheelpose.mp4",
       techColor: "teal",
       labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
@@ -174,7 +174,7 @@ export default function Home() {
       title: "Auritus",
       description: "Open-source optimization toolkit for training human movement models using earables",
       tech: ["Python", "C/C++", "Applied AI/ML", "IoT"],
-      metrics: "Published at IMWUT \'22",
+      metrics: "Published at IMWUT &apos;22",
       video: "/auritus.jpg", // Changed to image file
       techColor: "indigo",
       labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],
