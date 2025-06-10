@@ -294,7 +294,7 @@ export default function AboutPage() {
           <div className="prose prose-lg max-w-none">
             <div className="bg-gray-50 rounded-lg p-8 text-gray-800 leading-relaxed text-lg">
               <p className="mb-6">
-                <strong>Extended Reality (XR)</strong> is an umbrella term for Augmented Reality (AR), Virtual Reality (VR), and Mixed Reality (MR). I'm an XR enthusiast, an HCI researcher <strong>@HiLab</strong>, Department of Electrical & Computer Engineering, UCLA, advised by <strong>Prof. Yang Zhang</strong>. 
+                <strong>Extended Reality (XR)</strong> is an umbrella term for Augmented Reality (AR), Virtual Reality (VR), and Mixed Reality (MR). I am an XR enthusiast, an HCI researcher <strong>@HiLab</strong>, Department of Electrical & Computer Engineering, UCLA, advised by <strong>Prof. Yang Zhang</strong>. 
               </p>
               
               <p className="mb-6">

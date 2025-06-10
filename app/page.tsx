@@ -571,7 +571,7 @@ export default function Home() {
                       .filter(Boolean)
                       .sort()
                       .map((tag) => {
-                        const getTagColor = (tag) => {
+                        const getTagColor = (tag: string) => {
                           if (['C#', 'C++', 'Python', 'JavaScript'].includes(tag)) {
                             return 'bg-blue-200 text-blue-800';
                           }

@@ -16,6 +16,7 @@ interface ProjectDetail {
   challenges: string[]
   solutions: string[]
   results: string[]
+  labels: string[]
   github?: string
   paper?: string
   videoPreview?: string // YouTube link for main video
@@ -120,6 +121,7 @@ export default function ProjectDetailPage() {
       description: 'Facilitating Remote Accessibility Assessment for Wheelchair Users with VR',
       fullDescription: 'Embodied Exploration is a Virtual Reality technique for wheelchair users to evaluate accessibility remotely. It delivers the experience of a physical visit while keeping the convenience of remote assessment. We validated the efficacy of Embodied Exploration against photo galleries and virtual tours through user studies.',
       tech: ['C#', 'Unity', 'VR', 'Accessibility'],
+      labels: ["XR", "Unity", "C#", "Accessibility"],
       metrics: 'Published at ASSETS &apos;23',
       video: '/embodiedexploration.mp4',
       images: ['/project1-1.jpg', '/project1-2.jpg'],
@@ -148,6 +150,7 @@ export default function ProjectDetailPage() {
       description: 'Non-contact Force Sensing with Laser Speckle Imaging',
       fullDescription: 'ForceSight is a non-contact force sensing approach using laser speckle imaging. Our key observation is that object surfaces deform in the presence of force. This deformation, though very minute, manifests as observable and discernible laser speckle shifts, which we leverage to sense the applied force.',
       tech: ['Python', 'Computer Vision', 'Sensors'],
+      labels: ["Applied AI/ML", "XR", "Python"],
       metrics: '<0.3N error, patented, Best Demo Honorable Mention',
       video: '/forcesight.mp4',
       images: ['/project2-1.jpg', '/project2-2.jpg'],
@@ -176,6 +179,7 @@ export default function ProjectDetailPage() {
       description: 'Using Hands to Imitate Objects in AR/VR for Expressive Interactions',
       fullDescription: 'A new interaction technique that lets users\' hands become virtual objects by imitating the objects themselves. For example, a thumbs-up hand pose is used to mimic a joystick. We created a wide array of interaction designs around this idea to demonstrate its applicability in object retrieval and interactive control tasks.',
       tech: ['C#', 'C++', 'Python', 'XR'],
+      labels: ["XR", "C#", "C/C++", "Python"],
       metrics: '53K views, Meta SDK adoption, Best Paper Honorable Mention',
       video: '/handinterfaces.mp4',
       images: ['/project3-1.jpg', '/project3-2.jpg'],
@@ -205,6 +209,7 @@ export default function ProjectDetailPage() {
       description: 'Switching UI Positionings between Static, Dynamic, and Self Entities',
       fullDescription: 'We facilitated UI mobility between static, dynamic, and self entities with Finger Switches based on users\' in-situ needs. Extended reality (XR) has the potential for seamless user interface (UI) transitions across people, objects, and environments, but UI mobility remains an often-overlooked feature.',
       tech: ['C#', 'Python', 'Unity', 'XR'],
+      labels: ["XR", "C#", "Python"],
       metrics: 'Published at CHI &apos;24',
       video: '/uimobility.mp4',
       images: ['/project4-1.jpg', '/project4-2.jpg'],
@@ -233,6 +238,7 @@ export default function ProjectDetailPage() {
       description: 'Artificial muscle skin system for haptic feedback in Extended Reality',
       fullDescription: 'We present a wearable haptic artificial muscle skin based on multilayer dielectric elastomer actuators (DEAs) in Extended Reality (XR) systems to enhance immersion. This breakthrough technology provides realistic haptic feedback for enhanced XR experiences.',
       tech: ['C#', 'C/C++', 'Hardware', 'Haptics'],
+      labels: ["XR", "C#", "C/C++", "Hardware"],
       metrics: 'Published in Science Advances',
       video: '/haptic-skin.mp4',
       images: ['/project5-1.jpg', '/project5-2.jpg'],
@@ -259,6 +265,7 @@ export default function ProjectDetailPage() {
       description: 'Data Synthesis Techniques to Improve Pose Estimation Performance on Wheelchair Users',
       fullDescription: 'A data synthesis pipeline to address the underrepresentation of wheelchair users in data collection for pose estimation models. Our configurable pipeline generates synthetic data of wheelchair users using motion capture data and motion generation outputs simulated in the Unity game engine.',
       tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
+      labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
       metrics: 'Published at CHI &apos;24',
       video: '/wheelpose.mp4',
       images: ['/project6-1.jpg', '/project6-2.jpg'],
@@ -287,6 +294,7 @@ export default function ProjectDetailPage() {
       description: 'Open-source optimization toolkit for training human movement models using earables',
       fullDescription: 'AURITUS is an extendable and open-source optimization toolkit designed to enhance and replicate earable applications. AURITUS handles data collection, pre-processing, and labeling tasks using graphical tools and provides a hardware-in-the-loop (HIL) optimizer and TinyML interface to develop lightweight and real-time machine-learning models for activity detection and filters for head-pose tracking.',
       tech: ['Python', 'C++', 'Applied AI/ML', 'IoT'],
+      labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],
       metrics: 'Published at IMWUT &apos;21',
       video: '/auritus.jpg',
       images: ['/project7-1.jpg', '/project7-2.jpg'],
@@ -310,7 +318,7 @@ export default function ProjectDetailPage() {
     }
   }
 
-  const getYouTubeVideoId = (url) => {
+  const getYouTubeVideoId = (url: string | undefined): string | null => {
     if (!url) return null;
     
     // Handle youtu.be format
@@ -468,16 +476,16 @@ export default function ProjectDetailPage() {
                   controls
                   muted
                   loop
-                  onError={(e) => {
-                    console.error('Video failed to load:', project.video);
-                    // Hide the video element if it fails to load
-                    e.target.style.display = 'none';
-                    // Show fallback message
-                    const fallback = document.createElement('div');
-                    fallback.className = 'w-full h-64 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center text-gray-500';
-                    fallback.textContent = 'Video not available';
-                    e.target.parentNode.insertBefore(fallback, e.target);
-                  }}
+                  // onError={(e) => {
+                  //   console.error('Video failed to load:', project.video);
+                  //   // Hide the video element if it fails to load
+                  //   e.target.style.display = 'none';
+                  //   // Show fallback message
+                  //   const fallback = document.createElement('div');
+                  //   fallback.className = 'w-full h-64 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center text-gray-500';
+                  //   fallback.textContent = 'Video not available';
+                  //   e.target.parentNode.insertBefore(fallback, e.target);
+                  // }}
                 >
                   <source src={project.video} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -490,10 +498,10 @@ export default function ProjectDetailPage() {
                   src={project.video}
                   alt={project.title}
                   className="w-full rounded-lg shadow-lg"
-                  onError={(e) => {
-                    console.error('Image failed to load:', project.video);
-                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZmFmYiIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2YjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBub3QgYXZhaWxhYmxlPC90ZXh0Pgo8L3N2Zz4K';
-                  }}
+                  // onError={(e) => {
+                  //   console.error('Image failed to load:', project.video);
+                  //   e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZmFmYiIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2YjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBub3QgYXZhaWxhYmxlPC90ZXh0Pgo8L3N2Zz4K';
+                  // }}
                 />
               );
             } else {
@@ -527,7 +535,7 @@ export default function ProjectDetailPage() {
               .sort()
               .map((tag) => {
                 // Color coding based on category type
-                const getTagColor = (tag) => {
+                const getTagColor = (tag: string) => {
                   // Programming languages
                   if (['C#', 'C++', 'Python', 'JavaScript'].includes(tag)) {
                     return 'bg-blue-100 text-blue-800';
