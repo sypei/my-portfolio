@@ -35,6 +35,7 @@ export default function ProjectDetailPage() {
   const [projectId, setProjectId] = useState<string>('')
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [clickEffects, setClickEffects] = useState<ClickEffect[]>([])
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
 
   // Fun emoji pool
@@ -420,13 +421,19 @@ export default function ProjectDetailPage() {
       `}</style>
 
       {/* Header */}
-      <div className="bg-gray-50 py-8 px-8">
+      <div className="bg-gray-50 py-6 sm:py-8 px-4 sm:px-8">
         <div className="max-w-4xl mx-auto">
-          <Link href="/" className="text-blue-600 hover:text-blue-800 mb-4 inline-block">
-            ← Back to Portfolio
+          <Link 
+            href="/" 
+            className="text-blue-600 hover:text-blue-800 mb-4 inline-flex items-center text-sm sm:text-base font-medium"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Portfolio
           </Link>
-          <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-          <p className="text-xl text-gray-600">{project.description}</p>
+          <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">{project.title}</h1>
+          <p className="text-lg sm:text-xl text-gray-600">{project.description}</p>
         </div>
       </div>
       
