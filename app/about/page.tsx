@@ -299,7 +299,7 @@ export default function AboutPage() {
               </p>
               
               <p className="mb-6">
-                My expertise spans the full-stack development - from <strong className="text-blue-600">intuitive user interfaces</strong> to <strong className="text-blue-600">AI/ML algorithms</strong> and <strong className="text-blue-600">distributed systems architecture</strong>. I have successfully shipped features that reached 53K+ users and built frameworks adopted by major platforms including Meta SDK.
+                My expertise spans the full-stack development - from <strong className="text-blue-600">intuitive user interfaces</strong> to <strong className="text-blue-600">AI/ML algorithms</strong> and <strong className="text-blue-600">distributed systems architecture</strong>. I've successfully shipped features that reached 53K+ users and built frameworks adopted by major platforms including Meta SDK.
               </p>
               
               <div className="bg-green-50 border-l-4 border-green-500 p-6 my-6 rounded-r-lg">
@@ -313,7 +313,7 @@ export default function AboutPage() {
               </p>
               
               <p>
-                I am passionate about joining teams that values neat and useful products - whether that is in consumer XR, enterprise collaboration tools, entertainment or next-generation interfaces that will make our live better with technology. My PhD training makes me a quick learner and a creative problem solver, ready to tackle the next challenge.
+                I'm passionate about joining teams that values neat and useful products - whether that's in consumer XR, enterprise collaboration tools, entertainment or next-generation interfaces that will make people's live better with technology. My PhD training makes me a quick learner and a creative problem solver, ready to tackle the next challenge.
               </p>
             </div>
           </div>
