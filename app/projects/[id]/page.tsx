@@ -122,7 +122,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'Embodied Exploration is a Virtual Reality technique for wheelchair users to evaluate accessibility remotely. It delivers the experience of a physical visit while keeping the convenience of remote assessment. We validated the efficacy of Embodied Exploration against photo galleries and virtual tours through user studies.',
       tech: ['C#', 'Unity', 'VR', 'Accessibility'],
       labels: ["XR", "Unity", "C#", "Accessibility"],
-      metrics: 'Published at ASSETS &apos;23',
+      metrics: 'Published at ASSETS 23',
       video: '/embodiedexploration.mp4',
       images: ['/project1-1.jpg', '/project1-2.jpg'],
       challenges: [
@@ -210,7 +210,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'We facilitated UI mobility between static, dynamic, and self entities with Finger Switches based on users\' in-situ needs. Extended reality (XR) has the potential for seamless user interface (UI) transitions across people, objects, and environments, but UI mobility remains an often-overlooked feature.',
       tech: ['C#', 'Python', 'Unity', 'XR'],
       labels: ["XR", "C#", "Python"],
-      metrics: 'Published at CHI &apos;24',
+      metrics: 'Published at CHI 24',
       video: '/uimobility.mp4',
       images: ['/project4-1.jpg', '/project4-2.jpg'],
       challenges: [
@@ -266,7 +266,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'A data synthesis pipeline to address the underrepresentation of wheelchair users in data collection for pose estimation models. Our configurable pipeline generates synthetic data of wheelchair users using motion capture data and motion generation outputs simulated in the Unity game engine.',
       tech: ["Python", "C#", "Applied AI/ML", "Computer Vision"],
       labels: ["Applied AI/ML", "Python", "C#", "Accessibility"],
-      metrics: 'Published at CHI &apos;24',
+      metrics: 'Published at CHI 24',
       video: '/wheelpose.mp4',
       images: ['/project6-1.jpg', '/project6-2.jpg'],
       challenges: [
@@ -295,7 +295,7 @@ export default function ProjectDetailPage() {
       fullDescription: 'AURITUS is an extendable and open-source optimization toolkit designed to enhance and replicate earable applications. AURITUS handles data collection, pre-processing, and labeling tasks using graphical tools and provides a hardware-in-the-loop (HIL) optimizer and TinyML interface to develop lightweight and real-time machine-learning models for activity detection and filters for head-pose tracking.',
       tech: ['Python', 'C++', 'Applied AI/ML', 'IoT'],
       labels: ["Applied AI/ML", "Python", "C/C++", "Hardware"],
-      metrics: 'Published at IMWUT &apos;21',
+      metrics: 'Published at IMWUT 21',
       video: '/auritus.jpg',
       images: ['/project7-1.jpg', '/project7-2.jpg'],
       challenges: [

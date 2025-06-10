@@ -294,23 +294,25 @@ export default function AboutPage() {
           <div className="prose prose-lg max-w-none">
             <div className="bg-gray-50 rounded-lg p-8 text-gray-800 leading-relaxed text-lg">
               <p className="mb-6">
-                <strong>Extended Reality (XR)</strong> is an umbrella term for Augmented Reality (AR), Virtual Reality (VR), and Mixed Reality (MR). I am an XR enthusiast, an HCI researcher <strong>@HiLab</strong>, Department of Electrical & Computer Engineering, UCLA, advised by <strong>Prof. Yang Zhang</strong>. 
+                I am a <strong className="text-blue-600">Software Engineer</strong> specializing in <strong className="text-blue-600">Extended Reality (XR)</strong> technologies and <strong className="text-blue-600">Applied AI/ML</strong>, with proven experience building scalable applications that deliver measurable user impact. During my internships at <strong className="text-blue-600">Google</strong> and <strong className="text-blue-600">JPMorgan Chase</strong>, I developed creative XR solutions that improved performance by 6x and reduced latency to under 50ms for real-time collaboration systems.
               </p>
               
               <p className="mb-6">
-                I also had the fortune to work with mentors <strong>Alex Olwal</strong>, <strong>David Kim</strong>, <strong>Ruofei Du</strong> at Google and <strong>Blair MacIntyre</strong>, <strong>Feiyu Lu</strong> at JPMC XR Research.
+                My expertise spans the full-stack development - from <strong className="text-blue-600">intuitive user interfaces</strong> to <strong className="text-blue-600">AI/ML algorithms</strong> and <strong className="text-blue-600">distributed systems architecture</strong>. I have successfully shipped features that reached 53K+ users and built frameworks adopted by major platforms including Meta SDK.
               </p>
               
-              <p className="mb-6">
-                To broaden the interaction bandwidth between humans and XR systems, I aim to make XR technologies natural and efficient across users with different backgrounds and expertise through <strong>human body embodiment</strong>. Human body itself is a complex and delicate system after millions of years of evolution that embodies vast implicit knowledge carved in human genes.
-              </p>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-6 rounded-r-lg">
+                <p className="mb-4">
+                  <strong className="text-black-700">What drives me:</strong> Creating experiences that feel neat, natural and powerful. I enjoy developing pipelines and applications that eliminate the learning curve and increase the efficiency, making products accessible to users regardless of their technical background.
+                </p>
+              </div>
               
               <p className="mb-6">
-                By turning the body into an interaction medium, <strong>embodiment</strong> is the key to transferring user knowledge of human body to unseen interaction. To achieve this goal, I propose the concept of <strong>Embodied Interaction for XR</strong> -- turning body into XR interfaces through embodiment -- and explore how to design interaction techniques and invent enabling sensing technologies for body-embodied interfaces.
+                I bring a unique combination of <strong className="text-blue-600">deep technical skills</strong> (PyTorch, Unity, React, AWS, real-time systems) and <strong className="text-blue-600">user-centered design thinking</strong>. I love bridging the gap between cutting-edge research and practical product development.
               </p>
               
               <p>
-                I believe that <strong>interdisciplinary research</strong> across science, engineering, and design is key to effectively expanding the design space of human-centered interaction with emerging technologies.
+                I am passionate about joining teams that values neat and useful products - whether that is in consumer XR, enterprise collaboration tools, entertainment or next-generation interfaces that will make our live better with technology. My PhD training makes me a quick learner and a creative problem solver, ready to tackle the next challenge.
               </p>
             </div>
           </div>
